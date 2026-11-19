@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Rally-Mate – verseny követése</title>
+<meta name="description" content="Kövesd a versenyt élőben a Rally-Mate alkalmazásban – a helyszínen és interneten is.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kövesd a versenyt a Rally-Mate appban">
+<meta property="og:description" content="Eredmények, futó kör, követett versenyzők és értesítések – a helyszínen és interneten is.">
+<meta property="og:image" content="https://adrianbosze.github.io/rally-mate-privacy/store/feature-graphic-1024x500.png">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="500">
+<meta name="theme-color" content="#1F3A5F">
+<link rel="icon" href="store/icon-512.png">
+<style>
+:root{--bg:#F6F8FA;--ink:#1B2430;--muted:#5B6675;--accent:#1F3A5F;--go:#E8590C;--go-ink:#fff;--card:#fff;--line:#E3E8EF;--warn:#FFF4E5;--warn-ink:#7A4100}
+@media (prefers-color-scheme: dark){:root{--bg:#0F141B;--ink:#E8EDF3;--muted:#9AA6B5;--accent:#8DB4E8;--go:#F76707;--go-ink:#fff;--card:#18202B;--line:#2A3442;--warn:#2D2214;--warn-ink:#FFC078}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 -apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+main{max-width:520px;margin:0 auto;padding:20px 16px 40px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.06em;color:var(--accent)}
+.brand img{width:40px;height:40px;border-radius:10px}
+.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.lang button{border:0;background:transparent;color:var(--muted);font:600 13px/1 inherit;padding:7px 11px;cursor:pointer}
+.lang button[aria-pressed=true]{background:var(--accent);color:var(--bg)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;margin-top:18px}
+.kicker{color:var(--muted);font-size:14px;margin:0}
+h1{font-size:26px;line-height:1.25;margin:4px 0 14px;color:var(--ink);overflow-wrap:anywhere}
+.go{display:block;width:100%;text-align:center;text-decoration:none;background:var(--go);color:var(--go-ink);
+  font-weight:700;font-size:19px;padding:17px 16px;border-radius:12px;box-shadow:0 2px 0 rgba(0,0,0,.15)}
+.go:active{transform:translateY(1px)}
+.sub{color:var(--muted);font-size:14px;margin:10px 0 0;text-align:center}
+.note{background:var(--warn);color:var(--warn-ink);border-radius:10px;padding:12px 14px;font-size:15px;margin-top:16px}
+h2{font-size:17px;color:var(--accent);margin:0 0 8px}
+ol{margin:0;padding-left:22px}ol li{margin:5px 0}
+.copy{display:flex;gap:8px;margin-top:12px}
+.copy input{flex:1;min-width:0;border:1px solid var(--line);border-radius:8px;padding:10px;background:var(--bg);color:var(--ink);font-size:13px}
+.copy button,.alt{border:1px solid var(--accent);background:transparent;color:var(--accent);border-radius:8px;padding:9px 14px;font-weight:600;font-size:15px;cursor:pointer;text-decoration:none;display:inline-block}
+ul.feat{margin:0;padding-left:20px}ul.feat li{margin:4px 0}
+.muted{color:var(--muted);font-size:13px}
+footer{margin-top:22px;text-align:center}
+footer a{color:var(--muted)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body><main>
+<div class="top">
+  <div class="brand"><img src="store/icon-512.png" alt="">RALLY-MATE</div>
+  <div class="lang" role="group" aria-label="Nyelv / Language">
+    <button type="button" data-set-lang="hu">HU</button><button type="button" data-set-lang="en">EN</button>
+  </div>
+</div>
+
+<section class="card" id="ok">
+  <p class="kicker" data-t="kicker"></p>
+  <h1 id="race"></h1>
+  <a class="go" id="open" href="#" data-t="open"></a>
+  <p class="sub" data-t="sub"></p>
+  <div class="note" id="inapp" hidden data-t="inapp"></div>
+  <div class="note" id="other" hidden data-t="other"></div>
+</section>
+
+<section class="card" id="bad" hidden>
+  <h2 data-t="badTitle"></h2>
+  <p data-t="badText"></p>
+</section>
+
+<section class="card" id="help">
+  <h2 data-t="helpTitle"></h2>
+  <ol>
+    <li data-t="h1"></li>
+    <li data-t="h2"></li>
+    <li data-t="h3"></li>
+  </ol>
+  <div class="copy">
+    <input id="link" readonly aria-label="Link">
+    <button type="button" id="copyBtn" data-t="copy"></button>
+  </div>
+  <p style="margin:14px 0 0"><a class="alt" id="store" href="https://play.google.com/store/apps/details?id=com.rallymate.myapp" data-t="store"></a></p>
+</section>
+
+<section class="card">
+  <h2 data-t="whatTitle"></h2>
+  <ul class="feat">
+    <li data-t="w1"></li>
+    <li data-t="w2"></li>
+    <li data-t="w3"></li>
+    <li data-t="w4"></li>
+  </ul>
+</section>
+
+<footer><a href="index.html" data-t="privacy"></a></footer>
+</main>
+<script>
+(function () {
+  "use strict";
+  var PKG = "com.rallymate.myapp";
+  var STORE = "https://play.google.com/store/apps/details?id=" + PKG;
+  var T = {
+    hu: {
+      kicker: "Kövesd élőben a Rally-Mate alkalmazásban:",
+      open: "Megnyitás a Rally-Mate appban",
+      sub: "Ha még nincs meg az app, a Google Play nyílik meg – telepítés után koppints ide újra.",
+      inapp: "A Facebook / Messenger beépített böngészője nem mindig engedi megnyitni az appot. Koppints a jobb felső ⋮ menüre, és válaszd a <b>„Megnyitás böngészőben”</b> (Chrome) lehetőséget.",
+      other: "A Rally-Mate alkalmazás <b>Android</b> telefonra és tabletre készült. Küldd el ezt a linket magadnak az Android telefonodra, és ott nyisd meg.",
+      badTitle: "Hiányos link",
+      badText: "Ebből a linkből hiányzik a verseny azonosítója. Kérd el újra a szervezőtől (a Rally-Mate programban: Kapcsolat és megosztás → „Követés a Rally-Mate appban”).",
+      helpTitle: "Nem nyílik meg?",
+      h1: "Telepítsd a Rally-Mate alkalmazást a Google Play-ből (lent).",
+      h2: "Másold ki ezt a linket.",
+      h3: "Az alkalmazásban: ⋮ menü → <b>„🌐 Követés interneten (link)…”</b> → illeszd be.",
+      copy: "Másolás",
+      copied: "Kimásolva ✓",
+      store: "Rally-Mate a Google Play-en",
+      whatTitle: "Mit látsz az appban?",
+      w1: "Eredménylisták, a futó kör (nem hivatalos), a versenyzők körei.",
+      w2: "Versenyzők követése – értesítés minden változásukról.",
+      w3: "Rajt-visszaszámlálás, közlemények a szervezőtől.",
+      w4: "A helyszíni Wi-Fi-n és interneten (mobilneten) is. Javaslatot küldeni csak a helyszíni Wi-Fi-n lehet.",
+      privacy: "Adatvédelmi tájékoztató",
+      title: "Rally-Mate – verseny követése",
+      noName: "Rally-Mate verseny"
+    },
+    en: {
+      kicker: "Follow it live in the Rally-Mate app:",
+      open: "Open in the Rally-Mate app",
+      sub: "If you don't have the app yet, Google Play opens – after installing, tap here again.",
+      inapp: "The Facebook / Messenger built-in browser doesn't always open apps. Tap the ⋮ menu at the top right and choose <b>“Open in browser”</b> (Chrome).",
+      other: "The Rally-Mate app is made for <b>Android</b> phones and tablets. Send this link to your Android phone and open it there.",
+      badTitle: "Incomplete link",
+      badText: "This link is missing the race ID. Ask the organiser for it again (in the Rally-Mate program: Kapcsolat és megosztás → „Követés a Rally-Mate appban”).",
+      helpTitle: "Doesn't open?",
+      h1: "Install the Rally-Mate app from Google Play (below).",
+      h2: "Copy this link.",
+      h3: "In the app: ⋮ menu → <b>“🌐 Follow over the internet (link)…”</b> → paste it.",
+      copy: "Copy",
+      copied: "Copied ✓",
+      store: "Rally-Mate on Google Play",
+      whatTitle: "What you get in the app",
+      w1: "Result lists, the running lap (unofficial), each driver's laps.",
+      w2: "Follow drivers – a notification for every change.",
+      w3: "Start countdown, announcements from the organiser.",
+      w4: "On the venue Wi-Fi and over the internet (mobile data). Suggestions can only be sent on the venue Wi-Fi.",
+      privacy: "Privacy policy",
+      title: "Rally-Mate – follow the race",
+      noName: "Rally-Mate race"
+    }
+  };
+
+  var q = new URLSearchParams(location.search);
+  var f = q.get("f") || "";
+  var n = (q.get("n") || "").trim().slice(0, 120);
+  var valid = /^[A-Za-z0-9_-]{10,200}$/.test(f);
+
+  var ua = navigator.userAgent || "";
+  var android = /Android/i.test(ua);
+  var inApp = /FBAN|FBAV|FB_IAB|Instagram|Messenger|Line\/|MicroMessenger/i.test(ua);
+
+  var deep = "kovet?f=" + encodeURIComponent(f) + (n ? "&n=" + encodeURIComponent(n) : "");
+  var intentUrl = "intent://" + deep + "#Intent;scheme=rallymate;package=" + PKG +
+    ";S.browser_fallback_url=" + encodeURIComponent(STORE) + ";end";
+
+  var lang = "hu";
+  try { lang = localStorage.getItem("rm_lang") || ""; } catch (e) { lang = ""; }
+  if (lang !== "hu" && lang !== "en") lang = /^hu/i.test(navigator.language || "hu") ? "hu" : "en";
+
+  function $(id) { return document.getElementById(id); }
+
+  function render() {
+    var t = T[lang];
+    document.documentElement.lang = lang;
+    document.title = t.title;
+    var els = document.querySelectorAll("[data-t]");
+    for (var i = 0; i < els.length; i++) els[i].innerHTML = t[els[i].getAttribute("data-t")];
+    var bs = document.querySelectorAll("[data-set-lang]");
+    for (var j = 0; j < bs.length; j++) bs[j].setAttribute("aria-pressed", String(bs[j].getAttribute("data-set-lang") === lang));
+    $("race").textContent = n || t.noName;
+  }
+
+  $("ok").hidden = !valid;
+  $("bad").hidden = valid;
+  $("help").hidden = !valid;
+  $("link").value = location.href;
+  if (valid) {
+    $("open").href = android ? intentUrl : STORE;
+    $("inapp").hidden = !(android && inApp);
+    $("other").hidden = android;
+  }
+
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest ? e.target.closest("[data-set-lang]") : null;
+    if (b) {
+      lang = b.getAttribute("data-set-lang");
+      try { localStorage.setItem("rm_lang", lang); } catch (x) {}
+      render();
+    }
+  });
+
+  $("copyBtn").addEventListener("click", function () {
+    var inp = $("link");
+    var done = function () {
+      var btn = $("copyBtn");
+      btn.textContent = T[lang].copied;
+      setTimeout(function () { btn.textContent = T[lang].copy; }, 1800);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(inp.value).then(done, function () { inp.select(); try { document.execCommand("copy"); done(); } catch (x) {} });
+    } else {
+      inp.select();
+      try { document.execCommand("copy"); done(); } catch (x) {}
+    }
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

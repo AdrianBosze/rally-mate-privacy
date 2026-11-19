@@ -16,13 +16,14 @@ section{background:var(--card);border:1px solid var(--line);border-radius:10px;p
 </head>
 <body><main>
 <h1>Rally-Mate – Adatvédelmi tájékoztató</h1>
-<p class="muted">Hatályos: 2026. november 7. · Alkalmazás: Rally-Mate (com.rallymate.myapp) · English version below.</p>
+<p class="muted">Hatályos: 2026. november 19. · Alkalmazás: Rally-Mate (com.rallymate.myapp) · English version below.</p>
 
 <section>
 <h2>Röviden</h2>
 <p>A Rally-Mate alkalmazás a versenyhelyszín helyi Wi-Fi hálózatán, a szervező laptopján futó Rally-Mate időmérő
-programhoz kapcsolódik. Az alkalmazásnak <b>nincs saját szervere</b>, nem használ felhőt, reklámot, analitikát vagy
-nyomkövetést, és nem kér fiókot vagy regisztrációt.</p>
+programhoz kapcsolódik. Ha a helyszíni Wi-Fi nem érhető el, a szervező által a Google Drive-on nyilvánosan
+közzétett verseny-adatokat olvassa (lásd: <i>Követés interneten</i>). Az alkalmazásnak <b>nincs saját szervere</b>,
+nem használ reklámot, analitikát vagy nyomkövetést, és nem kér fiókot vagy regisztrációt.</p>
 
 <h2>Mit tárol a telefon</h2>
 <p>Csak a telefonon, titkosítva (Android Keystore):</p>
@@ -44,9 +45,21 @@ tárhelyén, pl. Google Drive-on tárolhatja). A javaslatküldés önkéntes.</l
 <p>Az eredménylistákban szereplő neveket, autókat és időket, valamint a szervezői közleményeket (szöveg, kép) a verseny
 szervezője teszi közzé; az alkalmazás csak megjeleníti őket. Ezekért az adatokért a szervező felel.</p>
 
+<h2>Követés interneten</h2>
+<p>Ha a telefon nem éri el a helyszíni Wi-Fi-t (vagy a szervező linkjét nyitod meg), az alkalmazás a verseny
+<b>nyilvános másolatát</b> olvassa, amelyet a szervező Rally-Mate programja tölt fel a saját Google Drive-jára
+(ugyanazok az adatok, amelyeket a helyszíni Wi-Fi-n bárki lát; a versenyző-kód nincs benne). Ehhez az alkalmazás a
+Google Drive API-hoz fordul; a Google a kérést (pl. a telefon IP-címét, és az alkalmazás azonosítását: csomagnév és
+aláíró tanúsítvány) a saját <a href="https://policies.google.com/privacy">adatvédelmi irányelvei</a> szerint kezeli.
+Az alkalmazás ilyenkor semmilyen személyes adatot nem küld, csak letölt. Versenyzőként interneten csak a rajtszámot
+lehet megadni (a telefonon marad); javaslatot küldeni csak a helyszíni Wi-Fi-n lehet.</p>
+<p>A követési link oldala (<i>kovet.html</i>) nem használ sütit vagy nyomkövetést; a választott nyelvet a böngésződ
+tárolja. Az oldalt a GitHub Pages szolgáltatja.</p>
+
 <h2>Engedélyek</h2>
 <ul>
-<li><b>Hálózat / Wi-Fi állapot:</b> a szervező laptopjának megtalálása és elérése a helyi Wi-Fi-n.</li>
+<li><b>Hálózat / Wi-Fi állapot:</b> a szervező laptopjának megtalálása és elérése a helyi Wi-Fi-n, illetve a
+nyilvános verseny-másolat letöltése interneten.</li>
 <li><b>Értesítések:</b> csak ha engedélyezed (szervezői közlemény, kör lezárva, javaslat-ablak, válasz, követett versenyzők változása).</li>
 <li><b>Előtérben futó szolgáltatás (adatszinkron):</b> amíg az állandó „Rally-Mate figyeli az eredményeket”
 értesítés látszik, a telefon a háttérben is lekéri a változásokat a laptopról. Az értesítésen leállítható.</li>
@@ -66,8 +79,9 @@ tárolt adatot töröl. Beküldött javaslat törlését a verseny szervezőjét
 <section lang="en">
 <h2>Privacy Policy (English)</h2>
 <p>Rally-Mate connects to the Rally-Mate timing program running on the organizer's laptop over the venue's local
-Wi-Fi. The app has <b>no server of its own</b> and uses no cloud services, ads, analytics or tracking. No account is
-required.</p>
+Wi-Fi. When the venue Wi-Fi is out of reach, it reads the race data that the organiser publishes publicly on Google
+Drive (see “Following over the internet”). The app has <b>no server of its own</b> and uses no ads, analytics or
+tracking. No account is required.</p>
 <p><b>Stored on the phone only (encrypted with Android Keystore):</b> your chosen role (spectator / competitor); for
 competitors a verification key derived from the competitor code (not the code itself) and the chosen start number;
 followed start numbers, settings and the last downloaded results. This data is excluded from backups and never leaves
@@ -76,8 +90,17 @@ the phone.</p>
 and time it refers to are sent only to the organizer's laptop over local Wi-Fi. Together with the organizer's reply it
 is visible to the event's participants and spectators in the app, and the organizer keeps it with the event data
 (possibly in their own storage such as Google Drive). Submitting is voluntary. Spectators send no personal data.</p>
+<p><b>Following over the internet:</b> when the phone can't reach the venue Wi-Fi (or you open the organiser's
+follow link), the app reads the race's <b>public copy</b>, uploaded by the organiser's Rally-Mate program to the
+organiser's own Google Drive (the same data anyone sees on the venue Wi-Fi; the competitor code is not in it). For this
+the app calls the Google Drive API; Google handles the request (e.g. the phone's IP address and the app's
+identification: package name and signing certificate) under its own
+<a href="https://policies.google.com/privacy">privacy policy</a>. The app sends no personal data then, it only
+downloads. Over the internet a competitor can only enter a start number (kept on the phone); suggestions can only be
+sent on the venue Wi-Fi. The follow-link page (<i>kovet.html</i>) uses no cookies or tracking; your chosen language is
+stored by your browser. It is served by GitHub Pages.</p>
 <p>Names, cars and times in the result lists, and organizer announcements (text, picture), are published by the event organizer, who is responsible for them.</p>
-<p><b>Permissions:</b> network/Wi-Fi state (to find and reach the organizer's laptop), notifications (only if you allow
+<p><b>Permissions:</b> network/Wi-Fi state (to find and reach the organizer's laptop, and to download the public race copy over the internet), notifications (only if you allow
 them: organizer announcements, lap closed, replies, followed competitors), a foreground data-sync service while the persistent "Rally-Mate is watching the results" notification is shown
 (it can be stopped from that notification).</p>
 <p><b>Deletion:</b> uninstalling the app (or clearing its data) deletes everything stored on the phone. To delete a
